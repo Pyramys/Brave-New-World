@@ -14,24 +14,61 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        txt_day.text = "01";
-        txt_period.text = "Landing";
+
     }
 
     private void Start()
     {
         // Change where this actually starts.        
         time.StartTime();
+        UpdateTimeUI();
+        UpdatePeriodUI(1);
+        UpdateDayUI();
     }
 
     void Update()
     {
-        UpdateTimeUI();
+        
     }
 
-    private void UpdateTimeUI ()
+    public void UpdateTimeUI ()
     {
         txt_minute.text = time.Int_minute.ToString();
-        txt_hour.text = time.Int_hour.ToString();
+        if(time.Int_hour >=24)
+        {
+            var newTime = time.Int_hour - 24;
+            txt_hour.text =newTime.ToString();
+        }
+        else
+        {
+            txt_hour.text = time.Int_hour.ToString();
+        }        
+    }
+
+    public void UpdateDayUI()
+    {
+        txt_day.text = time.Int_day.ToString();
+    }
+
+    public void UpdatePeriodUI(int num)
+    {
+        switch (num)
+        {
+            case 1:
+                {
+                    txt_period.text = "Landing";
+                    break;
+                }
+            case 2:
+                {
+                    txt_period.text = "Early Beginnings";
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("Could not resolve period UI update");
+                    break;
+                }
+        }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Time : MonoBehaviour
 {
+    private UIManager uiManager;
     // This script controls the time part of the game.
     // Contains variables and methods for like time.
     // It needs ways to pull that info for various other classes.
@@ -75,6 +76,11 @@ public class Time : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+    }
+
     public void StartTime()
     {
         InvokeRepeating("FlowOfTime", 1, flt_timeSpeed);
@@ -103,10 +109,13 @@ public class Time : MonoBehaviour
             {
                 Int_hour = 6;
                 int_day += 1;
+                
                 PeriodChange();
                 // Method for handling end of day events.
             }
         }
+        // Update the UI with new time
+        uiManager.UpdateTimeUI();
     }
 
     void PeriodChange()
@@ -117,17 +126,19 @@ public class Time : MonoBehaviour
         {
             case 1:
                 {
-                    if (int_day >= 3)
+                    if (int_day > 3)
                     {
                         int_period += 1;
+                        int_day = 1;
                     }
                     break;
                 }
             case 2:
                 {
                     if(int_day >= 7)
-                    {
+                    {                        
                         int_period += 2;
+                        int_day = 1;
                     }
                     break;
                 }
@@ -137,5 +148,7 @@ public class Time : MonoBehaviour
                     break;
                 }
         }
+        uiManager.UpdatePeriodUI(int_period);
+        uiManager.UpdateDayUI();
     }
 }
