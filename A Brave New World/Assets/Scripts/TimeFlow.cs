@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Time : MonoBehaviour
+public class TimeFlow : MonoBehaviour
 {
     private UIManager uiManager;
     // This script controls the time part of the game.
@@ -114,7 +114,7 @@ public class Time : MonoBehaviour
                 // Method for handling end of day events.
             }
         }
-        // Update the UI with new time
+        // Update the UI with new time.
         uiManager.UpdateTimeUI();
     }
 
