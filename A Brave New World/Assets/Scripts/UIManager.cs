@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public Text txt_hour;
     public Text txt_period;
 
-    public Time time;
+    public TimeCheck timeCheck;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         // Change where this actually starts.        
-        time.StartTime();
+        timeCheck.StartTime();
         UpdateTimeUI();
         UpdatePeriodUI(1);
         UpdateDayUI();
@@ -33,21 +33,21 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTimeUI ()
     {
-        txt_minute.text = time.Int_minute.ToString();
-        if(time.Int_hour >=24)
+        txt_minute.text = timeCheck.Int_minute.ToString();
+        if(timeCheck.Int_hour >=24)
         {
-            var newTime = time.Int_hour - 24;
+            var newTime = timeCheck.Int_hour - 24;
             txt_hour.text =newTime.ToString();
         }
         else
         {
-            txt_hour.text = time.Int_hour.ToString();
+            txt_hour.text = timeCheck.Int_hour.ToString();
         }        
     }
 
     public void UpdateDayUI()
     {
-        txt_day.text = time.Int_day.ToString();
+        txt_day.text = timeCheck.Int_day.ToString();
     }
 
     public void UpdatePeriodUI(int num)

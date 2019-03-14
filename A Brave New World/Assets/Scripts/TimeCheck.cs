@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Time : MonoBehaviour
+public class TimeCheck : MonoBehaviour
 {
     private UIManager uiManager;
     // This script controls the time part of the game.
