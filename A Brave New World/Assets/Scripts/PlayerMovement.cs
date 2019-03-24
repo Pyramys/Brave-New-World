@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         if (characterController.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection = transform.TransformDirection(Camera.main.transform.forward);
             moveDirection = moveDirection * flt_moveSpeed;
             if (Input.GetButton("Jump"))
             {
